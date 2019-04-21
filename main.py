@@ -116,6 +116,9 @@ def main():
                     guard.alive = False
                 else:
                     macgyver.alive = False
+                    keep_playing = False
+            if macgyver.x == 16:
+                keep_playing = False
             previous_time = time.time()
 
     pygame.quit()
