@@ -27,5 +27,6 @@ class MacGyver(Character):
             if labyrinth.get_at((self.y*case_length + case_length, self.x*case_length+15)) == white:
                 self.y += 1
         if keystate[pygame.K_LEFT]:
-            if labyrinth.get_at((self.y*case_length, self.x*case_length+15)) == white:
-                self.y -= 1
+            if self.y != 1:
+                if labyrinth.get_at((self.y*case_length, self.x*case_length+15)) == white:
+                    self.y -= 1
