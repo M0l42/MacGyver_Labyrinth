@@ -12,7 +12,7 @@ class Character:
         self.x = x
         self.y = y
         self.alive = True
-        self.surface = pygame.image.load("pictures/" + picture).convert()
+        self.surface = pygame.image.load("pictures/" + picture).convert_alpha()
 
 
 class MacGyver(Character):
@@ -26,18 +26,21 @@ class Items:
 
 def main():
     keep_playing = True
+    case_length = 40
     pygame.init()
 
     pygame.key.set_repeat(10, 10)
 
-    screen = pygame.display.set_mode((340,340), pygame.DOUBLEBUF)
+    screen = pygame.display.set_mode((680, 680), pygame.DOUBLEBUF)
 
-    map = Map()
-    macGyver = MacGyver(0, 0, "MacGyver.png")
-    guard = Character(14, 14, "Gardien.png")
+    labyrinth = Map()
+    macgyver = MacGyver(1, 1, "MacGyver.png")
+    guard = Character(15, 15, "Gardien.png")
 
     while keep_playing:
-        screen.blit(map.surface, (0, 0))
+        screen.blit(labyrinth.surface, (0, 0))
+        screen.blit(macgyver.surface, (macgyver.y*case_length+3, macgyver.x*case_length+3))
+        screen.blit(guard.surface, (guard.y * case_length + 3, guard.x * case_length + 3))
         pygame.display.flip()
         keystate = pygame.key.get_pressed()
         for event in pygame.event.get():
