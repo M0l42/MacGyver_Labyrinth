@@ -3,6 +3,7 @@ import time
 
 white = (255,255,255)
 
+
 class Map:
     # Loading the map
     def __init__(self):
