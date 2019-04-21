@@ -1,5 +1,6 @@
 import pygame
 import time
+from random import *
 
 white = (255,255,255)
 
@@ -12,11 +13,11 @@ class Map:
 
 class Character:
     # Initialization of the character
-    def __init__(self, x, y, picture):
+    def __init__(self, x, y, picture_name):
         self.x = x
         self.y = y
         self.alive = True
-        self.surface = pygame.image.load("pictures/" + picture).convert_alpha()
+        self.surface = pygame.image.load("pictures/" + picture_name).convert_alpha()
 
 
 class MacGyver(Character):
@@ -37,12 +38,34 @@ class MacGyver(Character):
 
 
 class Items:
-    pass
+    def __init__(self, x, y, picture_name):
+        self.x = x
+        self.y = y
+        self.picked = False
+        self.surface = pygame.image.load("pictures/" + picture_name).convert_alpha()
+
+
+def get_random_position(i, items):
+    position_not_taken = False
+    while position_not_taken is False:
+        x = randint(1, 15)
+        y = randint(1, 15)
+        if (x, y) != (0, 0) or (x, y) != (15, 15):
+            if i == 0:
+                position_not_taken = True
+            else:
+                for j in range(0, i):
+                    if (x, y) != (items[j].x, items[j].y):
+                        position_not_taken = True
+                    else:
+                        position_not_taken = False
+    return x, y
 
 
 def main():
     keep_playing = True  # It will be true until the player win or die
     case_length = 40
+    items_picked = 0
 
     pygame.init()
 
@@ -53,6 +76,15 @@ def main():
     labyrinth = Map()
     macgyver = MacGyver(1, 1, "MacGyver.png")
     guard = Character(15, 15, "Gardien.png")
+
+    items = []
+    (x, y) = get_random_position(0, items)
+    items.append(Items(x, y, "aiguille.png"))
+    (x, y) = get_random_position(1, items)
+    items.append(Items(x, y, "ether.png"))
+    (x, y) = get_random_position(2, items)
+    items.append(Items(x, y, "tube_plastique.png"))
+
     previous_time = time.time()
 
     while keep_playing:
@@ -63,13 +95,27 @@ def main():
         if actual_time - previous_time >= 0.08:
             # bliting the all the image to the screen
             screen.blit(labyrinth.surface, (0, 0))
-            screen.blit(macgyver.surface, (macgyver.y*case_length+3, macgyver.x*case_length+3))
-            screen.blit(guard.surface, (guard.y * case_length + 3, guard.x * case_length + 3))
+            if macgyver.alive is True:
+                screen.blit(macgyver.surface, (macgyver.y*case_length+3, macgyver.x*case_length+3))
+            if guard.alive is True:
+                screen.blit(guard.surface, (guard.y * case_length + 3, guard.x * case_length + 3))
+            for i in items:
+                if i.picked is False:
+                    screen.blit(i.surface, (i.y * case_length + 3, i.x * case_length + 3))
             # Displaying the new screen
             pygame.display.flip()
             # Getting the value of the key pressed by the player
             keystate = pygame.key.get_pressed()
             macgyver.move(keystate, labyrinth, case_length)
+            for i in items:
+                if (macgyver.x, macgyver.y) == (i.x, i.y) and i.picked is False:
+                    i.picked = True
+                    items_picked += 1
+            if (macgyver.x, macgyver.y) == (guard.x, guard.y):
+                if items_picked == 3:
+                    guard.alive = False
+                else:
+                    macgyver.alive = False
             previous_time = time.time()
 
     pygame.quit()
