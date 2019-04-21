@@ -14,7 +14,7 @@ class Items:
         while position_not_taken is False:
             self.x = randint(1, 15)
             self.y = randint(1, 15)
-            if (self.x, self.y) != (0, 0) or (self.x, self.y) != (15, 15):
+            if (self.x, self.y) != (1, 1) and (self.x, self.y) != (15, 15):
                 if i == 0:
                     position_not_taken = True
                 else:

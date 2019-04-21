@@ -14,7 +14,7 @@ def quitting(macgyver, guard):
         else:
             macgyver.alive = False
             return False
-    if macgyver.x == 16:
+    if macgyver.y == 16:
         return False
     else:
         return True
