@@ -1,6 +1,7 @@
 import pygame
 from macgyver_game.models.character import Character, MacGyver
 from macgyver_game.models.items import Items
+from macgyver_game.events.events import keyboard
 
 
 class Game:
@@ -29,10 +30,15 @@ class Game:
         for i in self.items:
             if i.picked is False:
                 screen.blit(i.surface, (i.y * self.case_length + 3, i.x * self.case_length + 3))
+        pygame.display.flip()
 
     def picking_item(self):
-        #macgyver.move(keyboard(), labyrinth, case_length)
         for i in self.items:
             if (self.macgyver.x, self.macgyver.y) == (i.x, i.y) and i.picked is False:
                 i.picked = True
                 self.macgyver.items_picked += 1
+
+    def action(self, screen):
+        self.display(screen)
+        self.macgyver.move(keyboard(), self.labyrinth, self.case_length)
+        self.picking_item()
