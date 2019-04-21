@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# coding: utf-8
+
 import pygame
 import time
 from random import *
@@ -38,28 +41,26 @@ class MacGyver(Character):
 
 
 class Items:
-    def __init__(self, x, y, picture_name):
-        self.x = x
-        self.y = y
+    def __init__(self, picture_name):
         self.picked = False
         self.surface = pygame.image.load("pictures/" + picture_name).convert_alpha()
+        self.x = None
+        self.y = None
 
-
-def get_random_position(i, items):
-    position_not_taken = False
-    while position_not_taken is False:
-        x = randint(1, 15)
-        y = randint(1, 15)
-        if (x, y) != (0, 0) or (x, y) != (15, 15):
-            if i == 0:
-                position_not_taken = True
-            else:
-                for j in range(0, i):
-                    if (x, y) != (items[j].x, items[j].y):
-                        position_not_taken = True
-                    else:
-                        position_not_taken = False
-    return x, y
+    def get_random_position(self, i, items):
+        position_not_taken = False
+        while position_not_taken is False:
+            self.x = randint(1, 15)
+            self.y = randint(1, 15)
+            if (self.x, self.y) != (0, 0) or (self.x, self.y) != (15, 15):
+                if i == 0:
+                    position_not_taken = True
+                else:
+                    for j in range(0, i):
+                        if (self.x, self.y) != (items[j].x, items[j].y):
+                            position_not_taken = True
+                        else:
+                            position_not_taken = False
 
 
 def main():
@@ -78,12 +79,11 @@ def main():
     guard = Character(15, 15, "Gardien.png")
 
     items = []
-    (x, y) = get_random_position(0, items)
-    items.append(Items(x, y, "aiguille.png"))
-    (x, y) = get_random_position(1, items)
-    items.append(Items(x, y, "ether.png"))
-    (x, y) = get_random_position(2, items)
-    items.append(Items(x, y, "tube_plastique.png"))
+    items.append(Items("aiguille.png"))
+    items.append(Items("ether.png"))
+    items.append(Items("tube_plastique.png"))
+    for i in range(0, 3):
+        items[i].get_random_position(i, items)
 
     previous_time = time.time()
 
@@ -123,5 +123,5 @@ def main():
 
     pygame.quit()
 
-
-main()
+if __name__ == "__main__":
+    main()
