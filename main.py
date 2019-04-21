@@ -25,12 +25,24 @@ class Items:
 
 
 def main():
+    keep_playing = True
     pygame.init()
 
     pygame.key.set_repeat(10, 10)
 
+    screen = pygame.display.set_mode((340,340), pygame.DOUBLEBUF)
+
+    map = Map()
     macGyver = MacGyver(0, 0, "MacGyver.png")
     guard = Character(14, 14, "Gardien.png")
+
+    while keep_playing:
+        screen.blit(map.surface, (0, 0))
+        pygame.display.flip()
+        keystate = pygame.key.get_pressed()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                keep_playing = False
 
     pygame.quit()
 
