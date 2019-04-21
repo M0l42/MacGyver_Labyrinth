@@ -5,6 +5,7 @@ import pygame
 import time
 from macgyver_game.models.character import Character, MacGyver
 from macgyver_game.models.items import Items
+from macgyver_game.events.events import keyboard, quitting
 
 
 def main():
@@ -32,9 +33,6 @@ def main():
 
     while keep_playing:
         actual_time = time.time()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                keep_playing = False
         if actual_time - previous_time >= 0.08:
             # bliting the all the image to the screen
             screen.blit(labyrinth, (0, 0))
@@ -48,20 +46,12 @@ def main():
             # Displaying the new screen
             pygame.display.flip()
             # Getting the value of the key pressed by the player
-            keystate = pygame.key.get_pressed()
-            macgyver.move(keystate, labyrinth, case_length)
+            macgyver.move(keyboard(), labyrinth, case_length)
             for i in items:
                 if (macgyver.x, macgyver.y) == (i.x, i.y) and i.picked is False:
                     i.picked = True
                     macgyver.items_picked += 1
-            if (macgyver.x, macgyver.y) == (guard.x, guard.y):
-                if macgyver.items_picked == 3:
-                    guard.alive = False
-                else:
-                    macgyver.alive = False
-                    keep_playing = False
-            if macgyver.x == 16:
-                keep_playing = False
+            keep_playing = quitting(macgyver, guard)
             previous_time = time.time()
 
     pygame.quit()
