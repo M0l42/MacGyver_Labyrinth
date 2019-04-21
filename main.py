@@ -1,4 +1,5 @@
 import pygame
+import time
 
 white = (255,255,255)
 
@@ -51,20 +52,24 @@ def main():
     labyrinth = Map()
     macgyver = MacGyver(1, 1, "MacGyver.png")
     guard = Character(15, 15, "Gardien.png")
+    previous_time = time.time()
 
     while keep_playing:
-        # bliting the all the image to the screen
-        screen.blit(labyrinth.surface, (0, 0))
-        screen.blit(macgyver.surface, (macgyver.y*case_length+3, macgyver.x*case_length+3))
-        screen.blit(guard.surface, (guard.y * case_length + 3, guard.x * case_length + 3))
-        # Displaying the new screen
-        pygame.display.flip()
-        # Getting the value of the key pressed by the player
-        keystate = pygame.key.get_pressed()
+        actual_time = time.time()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 keep_playing = False
+        if actual_time - previous_time >= 0.08:
+            # bliting the all the image to the screen
+            screen.blit(labyrinth.surface, (0, 0))
+            screen.blit(macgyver.surface, (macgyver.y*case_length+3, macgyver.x*case_length+3))
+            screen.blit(guard.surface, (guard.y * case_length + 3, guard.x * case_length + 3))
+            # Displaying the new screen
+            pygame.display.flip()
+            # Getting the value of the key pressed by the player
+            keystate = pygame.key.get_pressed()
             macgyver.move(keystate, labyrinth, case_length)
+            previous_time = time.time()
 
     pygame.quit()
 
