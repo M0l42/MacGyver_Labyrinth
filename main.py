@@ -61,6 +61,7 @@ class Items:
                             position_not_taken = True
                         else:
                             position_not_taken = False
+                            j = i
 
 
 def main():
