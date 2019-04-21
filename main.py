@@ -1,3 +1,6 @@
+import pygame
+
+
 class Map:
     def __init__(self):
         pass
@@ -21,3 +24,14 @@ class MacGyver(Character):
 
 class Items:
     pass
+
+
+def main():
+    pygame.init()
+
+    pygame.key.set_repeat(10,10)
+
+    pygame.quit()
+
+
+main()
