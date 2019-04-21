@@ -10,7 +10,6 @@ from macgyver_game.models.items import Items
 def main():
     keep_playing = True  # It will be true until the player win or die
     case_length = 40
-    items_picked = 0
 
     pygame.init()
 
@@ -54,9 +53,9 @@ def main():
             for i in items:
                 if (macgyver.x, macgyver.y) == (i.x, i.y) and i.picked is False:
                     i.picked = True
-                    items_picked += 1
+                    macgyver.items_picked += 1
             if (macgyver.x, macgyver.y) == (guard.x, guard.y):
-                if items_picked == 3:
+                if macgyver.items_picked == 3:
                     guard.alive = False
                 else:
                     macgyver.alive = False
