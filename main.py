@@ -3,59 +3,8 @@
 
 import pygame
 import time
-from random import *
-
-white = (255,255,255)
-
-
-class Character:
-    # Initialization of the character
-    def __init__(self, x, y, picture_name):
-        self.x = x
-        self.y = y
-        self.alive = True
-        self.surface = pygame.image.load("pictures/" + picture_name).convert_alpha()
-
-
-class MacGyver(Character):
-    # How MacGyver will move depending on the keys pressed
-    def move(self, keystate, labyrinth, case_length):
-        if keystate[pygame.K_UP]:
-            if labyrinth.get_at((self.y*case_length+15, self.x*case_length)) == white:
-                self.x -= 1
-        if keystate[pygame.K_DOWN]:
-            if labyrinth.get_at((self.y*case_length+15, self.x*case_length + case_length)) == white:
-                self.x += 1
-        if keystate[pygame.K_RIGHT]:
-            if labyrinth.get_at((self.y*case_length + case_length, self.x*case_length+15)) == white:
-                self.y += 1
-        if keystate[pygame.K_LEFT]:
-            if labyrinth.get_at((self.y*case_length, self.x*case_length+15)) == white:
-                self.y -= 1
-
-
-class Items:
-    def __init__(self, picture_name):
-        self.picked = False
-        self.surface = pygame.image.load("pictures/" + picture_name).convert_alpha()
-        self.x = None
-        self.y = None
-
-    def get_random_position(self, i, items):
-        position_not_taken = False
-        while position_not_taken is False:
-            self.x = randint(1, 15)
-            self.y = randint(1, 15)
-            if (self.x, self.y) != (0, 0) or (self.x, self.y) != (15, 15):
-                if i == 0:
-                    position_not_taken = True
-                else:
-                    for j in range(0, i):
-                        if (self.x, self.y) != (items[j].x, items[j].y):
-                            position_not_taken = True
-                        else:
-                            position_not_taken = False
-                            j = i
+from macgyver_game.models.character import Character, MacGyver
+from macgyver_game.models.items import Items
 
 
 def main():
