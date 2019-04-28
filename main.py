@@ -11,6 +11,7 @@ def main():
     keep_playing = True  # It will be true until the player win or die
     size = 680
     pygame.init()
+    pygame.mixer.init()
     pygame.key.set_repeat(10, 10)
     screen = pygame.display.set_mode((size, size), pygame.DOUBLEBUF)
     game = Game()

@@ -9,7 +9,9 @@ class Game:
     def __init__(self):
         self.length = 15
         self.case_length = 40
+
         self.labyrinth = pygame.image.load("pictures/labyrinthe.png").convert()
+        pygame.mixer.music.load("sounds/MacGyver_generique.mp3")
 
         self.macgyver = MacGyver(1, 1, "MacGyver.png")
         self.guard = Character(self.length, self.length, "Gardien.png")
@@ -18,6 +20,7 @@ class Game:
         self.items.append(Items("aiguille.png"))
         self.items.append(Items("ether.png"))
         self.items.append(Items("tube_plastique.png"))
+        self.items_sounds = pygame.mixer.Sound("sounds/get_item.wav")
         for i in range(0, 3):
             self.items[i].get_random_position(i, self.items)
 
@@ -37,6 +40,7 @@ class Game:
             if (self.macgyver.x, self.macgyver.y) == (i.x, i.y) and i.picked is False:
                 i.picked = True
                 self.macgyver.items_picked += 1
+                self.items_sounds.play()
 
     def action(self, screen):
         self.display(screen)
