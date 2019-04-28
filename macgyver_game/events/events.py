@@ -13,8 +13,11 @@ def quitting(macgyver, guard):
             return True
         else:
             macgyver.alive = False
+            print("You loose !")
             return False
     if macgyver.y == 16:
+        macgyver.win = True
+        print("You win !")
         return False
     else:
         return True

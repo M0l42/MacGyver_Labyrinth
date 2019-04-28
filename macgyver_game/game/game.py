@@ -46,3 +46,11 @@ class Game:
         self.display(screen)
         self.macgyver.move(keyboard(), self.labyrinth, self.case_length)
         self.picking_item()
+
+    def ending_game(self):
+        pygame.mixer.music.stop()
+        if self.macgyver.win is True:
+            pygame.mixer.music.load("sounds/winning.mp3")
+        else:
+            pygame.mixer.music.load("sounds/game_over.mp3")
+        pygame.mixer.music.play()

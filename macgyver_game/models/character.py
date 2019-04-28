@@ -15,6 +15,7 @@ class Character:
 class MacGyver(Character):
     # How MacGyver will move depending on the keys pressed
     items_picked = 0
+    win = False
 
     def move(self, keystate, labyrinth, case_length):
         if keystate[pygame.K_UP]:
