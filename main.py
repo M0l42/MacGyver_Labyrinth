@@ -16,6 +16,7 @@ def main():
     screen = pygame.display.set_mode((size, size), pygame.DOUBLEBUF)
     game = Game()
     previous_time = time.time()
+    pygame.mixer.music.play()
 
     while keep_playing:
         actual_time = time.time()
@@ -25,6 +26,7 @@ def main():
             keep_playing = quitting(game.macgyver, game.guard)
             previous_time = time.time()
 
+    pygame.mixer.quit()
     pygame.quit()
 
 
