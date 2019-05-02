@@ -20,5 +20,6 @@ def quitting(macgyver, guard):
             keep_playing = False
     return keep_playing
 
+
 def keyboard():
     return pygame.key.get_pressed()
