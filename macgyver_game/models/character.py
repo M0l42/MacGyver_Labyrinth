@@ -1,4 +1,5 @@
 import pygame
+import os
 
 white = (255, 255, 255)
 
@@ -9,7 +10,7 @@ class Character:
         self.x = x
         self.y = y
         self.alive = True
-        self.surface = pygame.image.load("pictures/" + picture_name).convert_alpha()
+        self.surface = pygame.image.load(os.path.join("pictures/", picture_name)).convert_alpha()
 
 
 class MacGyver(Character):

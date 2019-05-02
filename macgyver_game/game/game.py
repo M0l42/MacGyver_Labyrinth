@@ -1,3 +1,4 @@
+import os
 import pygame
 from macgyver_game.models.character import Character, MacGyver
 from macgyver_game.models.items import Items
@@ -10,8 +11,9 @@ class Game:
         self.length = 15
         self.case_length = 40
 
-        self.labyrinth = pygame.image.load("pictures/labyrinthe.png").convert()
-        pygame.mixer.music.load("sounds/MacGyver_generique.mp3")
+        self.labyrinth = pygame.image.load(os.path.join("pictures", "labyrinthe.png")).convert()
+        pygame.mixer.music.load(os.path.join("sounds", "MacGyver_generique.mp3"))
+        pygame.mixer.music.set_volume(0.5)
 
         self.macgyver = MacGyver(1, 1, "MacGyver.png")
         self.guard = Character(self.length, self.length, "Gardien.png")
