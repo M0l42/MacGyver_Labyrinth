@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 # coding: utf-8
-
+import os
 import pygame
 import time
 from macgyver_game.events.events import quitting
@@ -8,13 +8,14 @@ from macgyver_game.game.game import Game
 
 
 def main():
+    dir_path = os.path.dirname(os.path.realpath(__file__))
     keep_playing = True  # It will be true until the player win or die
     size = 680
     pygame.init()
     pygame.mixer.init()
     pygame.key.set_repeat(10, 10)
     screen = pygame.display.set_mode((size, size), pygame.DOUBLEBUF)
-    game = Game()
+    game = Game(dir_path)
     previous_time = time.time()
     pygame.mixer.music.play()
 

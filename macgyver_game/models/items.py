@@ -4,9 +4,9 @@ from random import randint
 
 
 class Items:
-    def __init__(self, picture_name):
+    def __init__(self, dir_path, picture_name):
         self.picked = False
-        self.surface = pygame.image.load(os.path.join("pictures/", picture_name)).convert_alpha()
+        self.surface = pygame.image.load(os.path.join(dir_path, "pictures/", picture_name)).convert_alpha()
         self.x = None
         self.y = None
 
