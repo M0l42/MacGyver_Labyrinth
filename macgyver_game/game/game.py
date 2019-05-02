@@ -15,19 +15,19 @@ class Game:
         self.background_image = pygame.image.load(
             os.path.join(self.dir_path, "pictures", "screen.png")).convert()
         self.labyrinth_shown = pygame.image.load(
-            os.path.join(self.dir_path, "pictures", "labyrinthe_transparent.png")).convert_alpha()
+            os.path.join(self.dir_path, "pictures", "labyrinth_alpha.png")).convert_alpha()
         self.labyrinth = pygame.image.load(
-            os.path.join(self.dir_path, "pictures", "labyrinthe.png")).convert()
+            os.path.join(self.dir_path, "pictures", "labyrinth.png")).convert()
         pygame.mixer.music.load(os.path.join(self.dir_path, "sounds", "MacGyver_generique.mp3"))
         pygame.mixer.music.set_volume(0.5)
 
         self.macgyver = MacGyver(1, 1, self.dir_path, "MacGyver.png")
-        self.guard = Character(self.length, self.length, self.dir_path, "Gardien.png")
+        self.guard = Character(self.length, self.length, self.dir_path, "Guard.png")
 
         self.items = []
-        self.items.append(Items(self.dir_path, "aiguille.png"))
+        self.items.append(Items(self.dir_path, "needle.png"))
         self.items.append(Items(self.dir_path, "ether.png"))
-        self.items.append(Items(self.dir_path, "tube_plastique.png"))
+        self.items.append(Items(self.dir_path, "plastic_tube.png"))
         self.items_sounds = pygame.mixer.Sound(os.path.join(self.dir_path, "sounds", "get_item.wav"))
         for i in range(0, 3):
             self.items[i].get_random_position(i, self.items)
