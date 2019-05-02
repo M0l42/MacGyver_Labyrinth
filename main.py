@@ -16,6 +16,14 @@ def main():
     pygame.init()
     pygame.key.set_repeat(10, 10)
     screen = pygame.display.set_mode((size, size), pygame.DOUBLEBUF)
+
+#   code to generate a background image
+#    background = pygame.image.load(os.path.join(dir_path, "pictures/background.png")).convert()
+#    for i in range(size):
+#        for j in range(size):
+#            screen.blit(background, (i*40, j*40))
+#    pygame.image.save(screen, dir_path, "picture/screen.png")
+
     game = Game(dir_path)
     previous_time = time.time()
     pygame.mixer.music.play()

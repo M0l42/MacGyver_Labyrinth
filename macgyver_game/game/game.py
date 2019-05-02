@@ -13,7 +13,12 @@ class Game:
         self.length = 15
         self.case_length = 40
 
-        self.labyrinth = pygame.image.load(os.path.join(self.dir_path, "pictures", "labyrinthe.png")).convert()
+        self.background_image = pygame.image.load(
+            os.path.join(self.dir_path, "pictures", "screen.png")).convert()
+        self.labyrinth_shown = pygame.image.load(
+            os.path.join(self.dir_path, "pictures", "labyrinthe_transparent.png")).convert_alpha()
+        self.labyrinth = pygame.image.load(
+            os.path.join(self.dir_path, "pictures", "labyrinthe.png")).convert()
         pygame.mixer.music.load(os.path.join(self.dir_path, "sounds", "MacGyver_generique.mp3"))
         pygame.mixer.music.set_volume(0.5)
 
@@ -29,7 +34,8 @@ class Game:
             self.items[i].get_random_position(i, self.items)
 
     def display(self, screen):
-        screen.blit(self.labyrinth, (0, 0))
+        screen.blit(self.background_image, (0, 0))
+        screen.blit(self.labyrinth_shown, (0, 0))
         if self.macgyver.alive is True:
             screen.blit(self.macgyver.surface, (self.macgyver.y * self.case_length + 3,\
                                                 self.macgyver.x * self.case_length + 3))
