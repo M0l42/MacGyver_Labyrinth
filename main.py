@@ -11,6 +11,7 @@ def main():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     keep_playing = True  # It will be true until the player win or die
     size = 680
+    # Pre init the mixer help pygame with the buffer of pygame.mixer
     pygame.mixer.pre_init(44100, -16, 2, 512)
     pygame.init()
     pygame.key.set_repeat(10, 10)
