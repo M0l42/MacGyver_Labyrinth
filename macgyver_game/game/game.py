@@ -1,5 +1,6 @@
 import os
 import pygame
+import time
 from macgyver_game.models.character import Character, MacGyver
 from macgyver_game.models.items import Items
 from macgyver_game.events.events import keyboard
@@ -29,7 +30,8 @@ class Game:
     def display(self, screen):
         screen.blit(self.labyrinth, (0, 0))
         if self.macgyver.alive is True:
-            screen.blit(self.macgyver.surface, (self.macgyver.y * self.case_length + 3, self.macgyver.x * self.case_length + 3))
+            screen.blit(self.macgyver.surface, (self.macgyver.y * self.case_length + 3,\
+                                                self.macgyver.x * self.case_length + 3))
         if self.guard.alive is True:
             screen.blit(self.guard.surface, (self.guard.y * self.case_length + 3, self.guard.x * self.case_length + 3))
         for i in self.items:
@@ -49,10 +51,24 @@ class Game:
         self.macgyver.move(keyboard(), self.labyrinth, self.case_length)
         self.picking_item()
 
-    def ending_game(self):
+    def ending_game(self, screen):
         pygame.mixer.music.stop()
+        actual_time = time.time()
+        previous_time = time.time()
         if self.macgyver.win is True:
+            winning = pygame.image.load(os.path.join("pictures", "winning.jpg")).convert()
             pygame.mixer.music.load("sounds/winning.mp3")
+            pygame.mixer.music.play()
+            while actual_time - previous_time < 6:
+                actual_time = time.time()
+                screen.blit(winning, (0, 0))
+                pygame.display.flip()
         else:
+            loosing = pygame.image.load(os.path.join("pictures", "loosing.jpg")).convert()
             pygame.mixer.music.load("sounds/game_over.mp3")
+            pygame.mixer.music.play()
+            while actual_time - previous_time < 8:
+                actual_time = time.time()
+                screen.blit(loosing, (0, 0))
+                pygame.display.flip()
         pygame.mixer.music.play()
