@@ -57,7 +57,7 @@ class Game:
         previous_time = time.time()
         if self.macgyver.win is True:
             winning = pygame.image.load(os.path.join("pictures", "winning.jpg")).convert()
-            pygame.mixer.music.load("sounds/winning.mp3")
+            pygame.mixer.music.load(os.path.join("sounds", "winning.mp3"))
             pygame.mixer.music.play()
             while actual_time - previous_time < 6:
                 actual_time = time.time()
@@ -65,7 +65,7 @@ class Game:
                 pygame.display.flip()
         else:
             loosing = pygame.image.load(os.path.join("pictures", "loosing.jpg")).convert()
-            pygame.mixer.music.load("sounds/game_over.mp3")
+            pygame.mixer.music.load(os.path.join("sounds", "game_over.mp3"))
             pygame.mixer.music.play()
             while actual_time - previous_time < 8:
                 actual_time = time.time()
