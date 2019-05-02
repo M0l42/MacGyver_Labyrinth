@@ -13,7 +13,6 @@ def main():
     size = 680
     pygame.mixer.pre_init(44100, -16, 2, 512)
     pygame.init()
-    pygame.mixer.init()
     pygame.key.set_repeat(10, 10)
     screen = pygame.display.set_mode((size, size), pygame.DOUBLEBUF)
     game = Game(dir_path)
@@ -30,7 +29,6 @@ def main():
 
     game.ending_game(screen)
 
-    pygame.mixer.quit()
     pygame.quit()
 
 
