@@ -19,7 +19,3 @@ def quitting(macgyver, guard):
             print("You loose !")
             keep_playing = False
     return keep_playing
-
-
-def keyboard():
-    return pygame.key.get_pressed()

@@ -3,7 +3,6 @@ import pygame
 import time
 from macgyver_game.models.character import Character, MacGyver
 from macgyver_game.models.items import Items
-from macgyver_game.events.events import keyboard
 
 
 class Game:
@@ -55,7 +54,7 @@ class Game:
 
     def action(self, screen):
         self.display(screen)
-        self.macgyver.move(keyboard(), self.labyrinth, self.case_length)
+        self.macgyver.move(pygame.key.get_pressed(), self.labyrinth, self.case_length)
         self.picking_item()
 
     def ending_game(self, screen):
