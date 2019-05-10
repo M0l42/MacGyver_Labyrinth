@@ -33,7 +33,7 @@ def main():
         if actual_time - previous_time >= 0.08:
             # make all the action needed
             game.action(screen)
-            keep_playing = quitting(game.macgyver, game.guard)
+            keep_playing = quitting(game.macgyver, game.guard, pygame.key.get_pressed())
             previous_time = time.time()
 
     game.ending_game(screen)

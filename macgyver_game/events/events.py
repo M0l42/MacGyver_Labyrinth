@@ -1,13 +1,12 @@
 import pygame
 
 
-def quitting(macgyver, guard):
+def quitting(macgyver, guard, keystate):
     keep_playing = True
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT or keystate[pygame.K_ESCAPE]:
             keep_playing = False
-        else:
-            keep_playing = True
+
     if (macgyver.x, macgyver.y) == (guard.x, guard.y):
         if macgyver.items_picked == 3:
             guard.alive = False
