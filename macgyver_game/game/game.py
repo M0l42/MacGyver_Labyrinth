@@ -46,6 +46,7 @@ class Game:
         pygame.display.flip()
 
     def picking_item(self):
+        # Checking with every item if MacGyver step on it
         for i in self.items:
             if (self.macgyver.x, self.macgyver.y) == (i.x, i.y) and i.picked is False:
                 i.picked = True
@@ -62,18 +63,22 @@ class Game:
         actual_time = time.time()
         previous_time = time.time()
         if self.macgyver.win is True:
+            # Showing the winning screen with music
             winning = pygame.image.load(os.path.join(self.dir_path, "pictures", "winning.jpg")).convert()
             pygame.mixer.music.load(os.path.join(self.dir_path, "sounds", "winning.mp3"))
             pygame.mixer.music.play()
             while actual_time - previous_time < 6:
+                # Display the screen for 6 second ( time of the music )
                 actual_time = time.time()
                 screen.blit(winning, (0, 0))
                 pygame.display.flip()
         else:
+            # Showing the loosing screen with music
             loosing = pygame.image.load(os.path.join(self.dir_path, "pictures", "loosing.jpg")).convert()
             pygame.mixer.music.load(os.path.join(self.dir_path, "sounds", "game_over.mp3"))
             pygame.mixer.music.play()
             while actual_time - previous_time < 8:
+                # Display the screen for 8 second ( time of the music )
                 actual_time = time.time()
                 screen.blit(loosing, (0, 0))
                 pygame.display.flip()
