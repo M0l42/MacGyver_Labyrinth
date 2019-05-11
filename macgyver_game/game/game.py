@@ -31,7 +31,7 @@ class Game:
         # Initialize our Items
         self.items = []
         # Load the Images and sounds
-        self.items.append(Items(self.dir_path, "needle2.png"))
+        self.items.append(Items(self.dir_path, "needle.png"))
         self.items.append(Items(self.dir_path, "ether.png"))
         self.items.append(Items(self.dir_path, "plastic_tube.png"))
         self.items_sounds = pygame.mixer.Sound(os.path.join(self.dir_path, "sounds", "get_item.wav"))
