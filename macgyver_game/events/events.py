@@ -17,4 +17,5 @@ def quitting(macgyver, guard, keystate):
             macgyver.alive = False
             print("You loose !")
             keep_playing = False
+            macgyver.win = False
     return keep_playing
