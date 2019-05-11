@@ -6,6 +6,8 @@ It's a little labyrinth where MacGyver need to escape, for his mission he need t
 With this he'll be able to make a syringe to put asleep the guard.
 Good Luck and Have Fun
 
+I recommend to use a virtual environment for this.
+
 The version needed to play :
 
 Python version : 3.7.3
