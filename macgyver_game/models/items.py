@@ -11,6 +11,7 @@ class Items:
         self.y = None
 
     def get_random_position(self, i, items):
+        # Look if there's already something in the position given until the case chosen is free
         position_not_taken = False
         while position_not_taken is False:
             self.x = randint(1, 15)

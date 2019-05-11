@@ -2,15 +2,18 @@
 # coding: utf-8
 import os
 import pygame
-import time
+from time import time
 from macgyver_game.events.events import quitting
 from macgyver_game.game.game import Game
 
 
 def main():
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    keep_playing = True  # It will be true until the player win or die
+    # To load our file even if main.py is launch from an other directory
+    keep_playing = True
+    # It will be true until the player win or die or if we quit the game
     size = 680
+
     # Pre init the mixer help pygame with the buffer of pygame.mixer
     pygame.mixer.pre_init(44100, -16, 2, 512)
     pygame.init()
@@ -24,12 +27,15 @@ def main():
     #        screen.blit(background, (i*40, j*40))
     # pygame.image.save(screen, dir_path, "picture/screen.png")
 
+    # Game will init all the other class
     game = Game(dir_path)
-    previous_time = time.time()
+    previous_time = time()
+    # Start playing music
     pygame.mixer.music.play()
 
     while keep_playing:
-        actual_time = time.time()
+        # actual and previous time will provide us some control on the pace of the game
+        actual_time = time()
         if actual_time - previous_time >= 0.1:
             # make all the action needed
             game.action(screen)
