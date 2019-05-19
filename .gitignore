@@ -1,2 +1,6 @@
 venv/
 .idea/
+macgyver_game/__pycache__/
+macgyver_game/events/__pycache__/
+macgyver_game/game/__pycache__/
+macgyver_game/models/__pycache__/
