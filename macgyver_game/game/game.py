@@ -4,6 +4,10 @@ from time import time
 from macgyver_game.models.character import Character, MacGyver
 from macgyver_game.models.items import Items
 
+white = (255, 255, 255)
+red = (255, 0, 0)
+green = (0, 255, 0)
+
 
 class Game:
 
@@ -25,8 +29,11 @@ class Game:
         pygame.mixer.music.set_volume(0.2)
 
         # Initialize our character
-        self.macgyver = MacGyver(1, 1, self.dir_path, "MacGyver.png")
-        self.guard = Character(self.length, self.length, self.dir_path, "Guard.png")
+
+        self.macgyver = MacGyver(self.length+1, self.case_length, green,
+                                 self.dir_path, "MacGyver.png", self.labyrinth)
+        self.guard = Character(self.length+1, self.case_length, red,
+                               self.dir_path, "Guard.png", self.labyrinth)
 
         # Initialize our Items
         self.items = []
@@ -70,7 +77,7 @@ class Game:
     def action(self, screen):
         # We regroup all action the game will need in one method.
         self.display(screen)
-        self.macgyver.move(pygame.key.get_pressed(), self.labyrinth, self.case_length)
+        self.macgyver.move(pygame.key.get_pressed(), self.labyrinth, self.case_length, white)
         self.picking_item()
 
     def ending_game(self, screen):

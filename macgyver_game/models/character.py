@@ -1,23 +1,30 @@
 import pygame
 import os
 
-white = (255, 255, 255)
-
 
 class Character:
     # Initialization of the character
-    def __init__(self, x, y, dir_path, picture_name):
-        self.x = x
-        self.y = y
+    def __init__(self, length, case_length, color, dir_path, picture_name, labyrinth):
+        self.x = 0
+        self.y = 0
+        self.get_initial_position(labyrinth, length, case_length, color)
         self.alive = True
         self.surface = pygame.image.load(os.path.join(dir_path, "pictures/", picture_name)).convert_alpha()
+
+    def get_initial_position(self, labyrinth, length, case_length, color):
+        for i in range(length):
+            for j in range(length):
+                if labyrinth.get_at((i * case_length + int(case_length/2),
+                                     j * case_length + int(case_length/2))) == color:
+                    self.x = i
+                    self.y = j
 
 
 class MacGyver(Character):
     items_picked = 0
     win = None
 
-    def move(self, keystate, labyrinth, case_length):
+    def move(self, keystate, labyrinth, case_length, white):
         # How MacGyver will move depending on the keys pressed
         if keystate[pygame.K_UP]:
             if labyrinth.get_at((self.y * case_length + 15, self.x * case_length)) == white and self.x > 0:
