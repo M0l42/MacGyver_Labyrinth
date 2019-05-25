@@ -31,7 +31,8 @@ def main():
     game = Game(dir_path)
     previous_time = time()
     # Start playing music
-    pygame.mixer.music.play()
+    if os.name == 'nt':
+        pygame.mixer.music.play()
 
     while keep_playing:
         # actual and previous time will provide us some control on the pace of the game
