@@ -2,6 +2,10 @@ import pygame
 
 
 def quitting(macgyver, guard, keystate):
+    """
+    quick function to tell us if the game is ended or not
+    it will quit or tell if the player win or not
+    """
     keep_playing = True
     for event in pygame.event.get():
         if event.type == pygame.QUIT or keystate[pygame.K_ESCAPE]:

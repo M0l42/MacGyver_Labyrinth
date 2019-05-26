@@ -8,6 +8,12 @@ from macgyver_game.game.game import Game
 
 
 def main():
+    """
+    main function, the programme will start from here
+    it will init and start the library needed for our game
+    The function will call the class Game and the quitting's function
+    it will also init the main screen.
+    """
     dir_path = os.path.dirname(os.path.realpath(__file__))
     # To load our file even if main.py is launch from an other directory
     keep_playing = True

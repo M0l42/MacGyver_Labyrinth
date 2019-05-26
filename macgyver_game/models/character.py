@@ -3,7 +3,11 @@ import os
 
 
 class Character:
-    # Initialization of the character
+    """
+    this class is the one for the character
+    it will get the position found in map's file
+    and load the image of the character
+    """
     def __init__(self, length, case_length, color, dir_path, picture_name, labyrinth):
         self.x = 0
         self.y = 0
@@ -21,6 +25,10 @@ class Character:
 
 
 class MacGyver(Character):
+    """
+    This class inherited from the Character class
+    It will add the method to handle the movement system
+    """
     items_picked = 0
     win = None
 

@@ -10,7 +10,12 @@ green = (0, 255, 0)
 
 
 class Game:
-
+    """
+    This class will be where all the game plays out
+    It will initialise all the other class and
+    it will handle the interaction between the other class
+    The images and music will be load here as well
+    """
     def __init__(self, dir_path):
         self.dir_path = dir_path
         self.length = 15
