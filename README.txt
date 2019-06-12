@@ -11,7 +11,7 @@ I recommend to use a virtual environment for this.
 The version needed to play :
 
 Python version : 3.7.3
-Pygame version : 1.9.5
+Pygame version : 1.9.6
 
 You need to install the module needed and have python updated,
 you can install the module with requirements.txt :
