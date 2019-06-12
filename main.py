@@ -23,6 +23,8 @@ def main():
     # Pre init the mixer help pygame with the buffer of pygame.mixer
     pygame.mixer.pre_init(44100, -16, 2, 512)
     pygame.init()
+    if pygame.mixer.get_init() is None:
+        pygame.mixer.init()
     # pygame.key.set_repeat(10, 10)
     screen = pygame.display.set_mode((size, size), pygame.DOUBLEBUF)
 
@@ -49,7 +51,8 @@ def main():
             keep_playing = quitting(game.macgyver, game.guard, pygame.key.get_pressed())
             previous_time = actual_time
 
-    game.ending_game(screen)
+    if game.macgyver.win != None:
+        game.ending_game(screen)
 
     pygame.quit()
 
