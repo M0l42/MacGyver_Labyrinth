@@ -51,7 +51,7 @@ class Game:
             self.items_sounds = pygame.mixer.Sound(os.path.join(self.dir_path, "sounds", "get_item.wav"))
 
         for i in range(0, 3):
-            self.items[i].get_random_position(i, self.items)
+            self.items[i].get_random_position(i, self.items, self.macgyver, self.guard)
 
     def display(self, screen):
         # This is where we'll blit all our image to the screen

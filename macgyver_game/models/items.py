@@ -16,13 +16,13 @@ class Items:
         self.x = None
         self.y = None
 
-    def get_random_position(self, i, items):
+    def get_random_position(self, i, items, macgyver, guard ):
         # Look if there's already something in the position given until the case chosen is free
         position_not_taken = False
         while position_not_taken is False:
             self.x = randint(1, 15)
             self.y = randint(1, 15)
-            if (self.x, self.y) != (1, 1) and (self.x, self.y) != (15, 15):
+            if (self.x, self.y) != (macgyver.x, macgyver.y) and (self.x, self.y) != (guard.x, guard.y):
                 if i == 0:
                     position_not_taken = True
                 else:
